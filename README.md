@@ -1,0 +1,1 @@
+# shopify-dynamic-trsut-badge-section
