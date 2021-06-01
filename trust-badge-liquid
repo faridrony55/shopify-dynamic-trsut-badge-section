@@ -1,0 +1,185 @@
+{%- if section.settings.select -%}
+
+<section class="Section trust-badge" id="section-{{ section.id }}" style="background-color:{{section.settings.bg_color}}">
+  <div class="Container"> 
+    <div class="flex"> 
+      
+      {% for block in section.blocks %}
+          <div class="col" >
+                
+             <ul>  
+              <li> 
+                {%- if block.settings.image != blank -%}
+                
+                    <img class="" src="{{ block.settings.image | img_url: '300x' }}" alt="{{ block.settings.image.alt | escape }}">
+                {%- endif -%}
+                 
+              </li>
+              <li> 
+                {%- if block.settings.quote != blank -%}
+                <p class="SectionHeader__Heading Heading u-h1"><a href="{{ block.settings.link | escape }}">{{ block.settings.quote | escape }}</a></p>
+                {%- endif -%}
+
+              </li>
+            </ul>
+            
+          </div>
+        {% endfor %}
+      
+      
+    </div>
+    
+
+   
+  </div>
+</section>
+
+    {%- endif -%}
+
+
+{% schema %} 
+ 
+{
+"name": "Trust Badge",
+  "class": "trust-badge-section",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "select",
+      "label": "Active or Inactive" ,
+        "default":true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Trust Badge" ,
+      "default":"Add 3 Trust Badge"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Trust Badge",
+      "settings": [ 
+         
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "20 x 20px recommended"
+        },
+         
+        {
+          "type": "text",
+          "id": "quote",
+          "label":"Text" 
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label":"link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name":"Trust Badge",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote"
+        }
+      ]
+    }
+  ]
+} 
+
+{% endschema %}
+
+
+ <style>
+  .trust-badge{
+    padding: 30px 35px;
+  }
+  .flex{
+      display: flex;
+    flex-wrap: wrap;
+  }
+  .flex .col{
+  
+    flex-basis: 33.33%;
+    padding:0 15px;
+    box-sizing:border-box;
+  }
+  .flex ul{
+    display: flex;
+    list-style:none;
+    align-items: center;
+  }
+  .flex ul li{
+  
+  }
+  .flex ul li img{
+    width: 25px; 
+    margin-right: 30px;
+    display: block;
+  }
+  .flex ul li p{
+    font-size: 12px;
+  }
+  .flex ul li a{
+    color: #fff;
+    text-transform: none;
+    font-size: 13px;
+  }
+  @media(max-width:575px){
+    
+  .flex{
+      flex-direction:column;
+  }
+    .flex ul { 
+    flex-direction: revert;
+    text-align: left;
+    margin-bottom: 5px;
+    }
+    .flex ul li{
+        margin-bottom:2px
+    }
+  .flex ul li img{ 
+    margin-right: 10px;
+    width: 20px;
+  }
+    .flex ul li a { 
+    font-size: 11px;
+}
+    .trust-badge {
+    padding: 15px 15px 5px;
+}
+    .trust-badge .Container { 
+    padding: 0 0;
+}
+  }
+</style>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+  <script>
+    
+       var  ss = $("#shopify-section-trust-badge"); 
+ $( "#shopify-section-1587989768827" ).append( ss ); 
+</script>
